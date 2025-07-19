@@ -1,4 +1,7 @@
-网盘链接：https://wwjt.lanzouu.com/iIsYU31d5qaj
+网盘链接：
+https://wwjt.lanzouu.com/iIsYU31d5qaj    --    MNIST
+https://wwjt.lanzouu.com/ioBUq31d5r0f    --    FashionMNIST
+https://wwjt.lanzouu.com/i10zC31d5qhg    --    ChineseMNIST
   MNIST是图像分类领域最常见的数据集，包含数字0-9十种类别的灰度图共60000张。
   与此类似的数据集有很多，比如FashionMnist，服装分类的数据集，chineseMnist，汉字分类的数据集等。
   网盘提供的数据集是已经处理为csv文件的数据集，包含测试集和训练集两个文件。文件中第一列为标签，后面的784个数据为
@@ -8,4 +11,5 @@
   每一个像素点的范围为[0,256)，我们最好在开始时归一化处理，利用广播机制（torch,numpy等基本库中都有）将所有数据除以255。
 标签：
   直接拿csv的第一列就行了。
-使用代码参照main.py，由于mnist过于常见，在流行库中该数据集都是内置的。
+使用代码参照main.py（以MNIST为例），由于mnist过于常见，在流行库中该数据集都是内置的。
+此外，ChineseMNIST是不内置在任何库中的，需要手动处理图片，处理过程参照chineseMnist.py。
