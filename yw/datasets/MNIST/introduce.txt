@@ -12,4 +12,5 @@ https://wwjt.lanzouu.com/i10zC31d5qhg    --    ChineseMNIST
 标签：
   直接拿csv的第一列就行了。
 使用代码参照main.py（以MNIST为例），由于mnist过于常见，在流行库中该数据集都是内置的。
-此外，ChineseMNIST是不内置在任何库中的，需要手动处理图片，处理过程参照chineseMnist.py。
+  此外，ChineseMNIST是不内置在任何库中的，需要手动处理图片，处理过程参照chineseMnist文件夹，首先使用pre_process生成json
+文件，注意数据集路径，然后在main.py中处理数据，重点在load_data函数。
