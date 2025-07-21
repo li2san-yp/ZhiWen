@@ -1,2 +1,4 @@
 网盘链接：https://wwjt.lanzouu.com/iugxA31hv7vg
 kaagle 网址：https://www.kaggle.com/datasets/vikrishnan/boston-house-prices/data
+  包含506条房价数据，已经整理为csv文件，每条14列，前13列为特征值，最后一列为标签。
+  在代码中将404条数据作为训练集（并使用K折交叉验证），剩下102条作为测试集最后评估模型。
