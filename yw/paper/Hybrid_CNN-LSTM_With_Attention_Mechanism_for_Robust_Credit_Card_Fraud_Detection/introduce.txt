@@ -1,0 +1,2 @@
+论文下载：https://wwjt.lanzouu.com/iJqy331omr1e
+该论文使用卷积神经网络，LSTM，和注意力机制实现了一个预测欺诈交易记录的模型。
