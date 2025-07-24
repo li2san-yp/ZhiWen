@@ -1,1 +1,4 @@
 论文下载链接：https://wwjt.lanzouu.com/iFcPn31sl9ve
+论文使用了9个数据集验证功能，我只找了第一个：https://wwjt.lanzouu.com/iCapT31sm84h  --  Pima Indians Diabetes
+本篇论文介绍了一种解决不平衡数据集问题的方法：SMOTE，合成少数超采样，通过在原有数据集上合成少数数据，达到数据集平衡。
+问题在于当少数数据集较为稀疏时，可能会出现较为严重的噪声问题。
