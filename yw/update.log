@@ -6,3 +6,7 @@
   更新boston-housing数据集以及测试代码，dogs-and-cats数据集和数据集拆分代码。
 [2025-07-22]
   更新dogs-and-cats数据集的测试代码（pytorch实现），以及一个理解DataLoader的代码。
+[2025-07-23]
+  一篇论文：Hybrid_CNN-LSTM_With_Attention_Mechanism_for_Robust_Credit_Card_Fraud_Detection
+[2026-07-24]
+  上一篇论文使用的SMOTE原论文：SMOTE: Synthetic minority over-sampling technique
