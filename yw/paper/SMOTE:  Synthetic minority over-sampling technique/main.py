@@ -18,7 +18,8 @@ import matplotlib.pyplot as plt
 并使用几个全连接层组成的线性网络训练，最后的准确率在将近80%
 """
 
-df = pd.read_csv("./data/The Pima Indian Diabetes.csv")
+# 注意修改这里导入的数据集位置
+df = pd.read_csv("./The Pima Indian Diabetes.csv")
 
 # 数据预处理，将为0的值使用均值填充
 zero_of_nan = ["Glucose","BloodPressure","SkinThickness","Insulin","BMI"]
@@ -33,6 +34,7 @@ X = df.drop('Outcome', axis=1)  # drop函数用于删除参数给的列，返回
 y = df['Outcome']  # Target variable
 
 # 使用SMOTE过采样处理不平衡的数据集
+如果不使用SMOTE将下面两行换成：X_resampled, y_resampled = X, y
 smote = SMOTE(random_state=42)
 X_resampled, y_resampled = smote.fit_resample(X, y) # type: ignore
 
@@ -84,10 +86,36 @@ model = Net().to(device)
 criterion = nn.BCELoss() # 二分类交叉熵损失，它计算批次的平均损失，返回一个标量
 optimizer = optim.Adam(model.parameters(), lr = 0.001)
 
-num_epochs = 40
+num_epochs = 100
+
+# 模型评估
+def evaluate():
+    model.eval()
+    correct, total = 0.0, 0.0
+    with torch.no_grad():
+        for X_test, y_test in test_loader:
+            X_test, y_test = X_test.to(device), y_test.to(device)
+            outputs = model(X_test)
+            predicted = torch.round(outputs).squeeze().long()
+            correct += (predicted == y_test).sum().item()
+            total += y_test.size(0)
+
+    # print(f"Test Accuracy: {correct / total:.4f}")
+    return (correct / total)
+
+# 平滑函数
+def smooth(arr, weight = 0.9):
+    tmp = []
+    for num in arr:
+        if tmp == []:
+            tmp.append(num)
+        else:
+            tmp.append(tmp[-1]*weight+num*(1-weight))
+    return tmp
 
 # 训练
 train_loss, train_acc = [], []
+val_acc = []
 for epoch in range(num_epochs):
     model.train()
     running_loss = 0.0
@@ -116,34 +144,36 @@ for epoch in range(num_epochs):
             correct += (predicted == labels).sum().item()
     acc = correct / total
     train_acc.append(acc)
-    print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {train_loss[-1]:.4f}, Accuracy: {acc:.4f}")
+    val_acc.append(evaluate())
+    print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {train_loss[-1]:.4f}, Accuracy: {acc:.4f}, val_acc: {val_acc[-1]:.4f}")
     
-# 模型评估
-model.eval()
-correct, total = 0, 0
-with torch.no_grad():
-    for X_test, y_test in test_loader:
-        X_test, y_test = X_test.to(device), y_test.to(device)
-        outputs = model(X_test)
-        predicted = torch.round(outputs).squeeze().long()
-        correct += (predicted == y_test).sum().item()
-        total += y_test.size(0)
-
-print(f"Test Accuracy: {correct / total:.4f}")
+train_loss = smooth(train_loss)
+train_acc = smooth(train_acc)
+val_acc = smooth(val_acc)
 
 # 数据可视化
 plt.figure(figsize=(12, 5))
-plt.subplot(1, 2, 1)
+plt.subplot(2, 2, 1)
 plt.plot(train_loss, label='Training Loss')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.title('Training Loss Over Epochs')
 plt.legend()
-plt.subplot(1, 2, 2)
+plt.grid()
+plt.subplot(2, 2, 2)
 plt.plot(train_acc, label='Training Accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.title('Training Accuracy Over Epochs')
 plt.legend()
+plt.grid()
+
+plt.subplot(2, 2, 3)
+plt.plot(val_acc, label="validation Accuracy")
+plt.legend()
+plt.xlabel("Epoch")
+plt.ylabel("val_acc")
+plt.title("Validation Accuracy Over Epochs")
+plt.grid()
 plt.tight_layout()
 plt.show()
