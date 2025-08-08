@@ -1,0 +1,4 @@
+数据集较大，可以在kaggle上找：https://www.kaggle.com/datasets/fedesoriano/cifar10-python-in-csv
+  注意这个链接的数据集中，test.csv不包含标签值，所以无法使用，可以从train.csv中划出一部分用来测试和验证。
+  数据集类似MNIST，每张图片为32*32*3大小，包含10种类别。
+  测试代码还在调试中...
