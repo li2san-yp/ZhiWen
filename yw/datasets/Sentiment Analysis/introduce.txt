@@ -1,4 +1,5 @@
 网盘链接：https://wwjt.lanzouu.com/iS1ZH32ziksh
   一个情感分析的数据集，每个样本包含一段文本以及对这个文本情感的分析
   main.py为训练模型的文件（训练时间可能较长）
+  main.ipynb用于对数据集进行分析，部分代码和main.py重合
   test.py为评估模型的文件。
