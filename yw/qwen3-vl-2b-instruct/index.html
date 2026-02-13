@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qwen3-VL-2B-Instruct</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Qwen3-VL-2B-Instruct</h1>
+    <div class="header-actions">
+      <button id="healthBtn">检查服务</button>
+      <button id="clearBtn">清空对话</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="chat" class="chat"></div>
+
+    <div class="composer">
+      <div class="composer-row">
+        <textarea id="prompt" placeholder="输入问题"></textarea>
+        <div class="composer-actions">
+          <button id="sendStopBtn" class="action-btn send">发送</button>
+        </div>
+      </div>
+      <div class="file-row">
+        <input id="imageInput" class="file-input" type="file" accept="image/*" />
+      </div>
+      <div id="preview" class="preview" style="display:none;">
+        <span class="chip">已选择图片</span>
+        <img id="previewImg" alt="preview" />
+        <button id="removeImg">移除</button>
+      </div>
+      <div id="status" class="status"></div>
+    </div>
+  </div>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

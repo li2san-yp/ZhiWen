@@ -1,0 +1,254 @@
+﻿:root {
+  --bg: #f7f7f5;
+  --panel: #ffffff;
+  --panel-2: #f2f2ef;
+  --text: #1f2933;
+  --muted: #6b7280;
+  --primary: #1f6feb;
+  --primary-2: #1a5dcc;
+  --danger: #d14343;
+  --bubble-user: #e7f0ff;
+  --bubble-assist: #ffffff;
+  --border: #e4e4e0;
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.4px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+button:hover { border-color: #c9c9c4; }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.chat {
+  flex: 1;
+  padding: 18px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  max-width: 80%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  line-height: 1.6;
+  word-break: break-word;
+  background: var(--bubble-assist);
+  box-shadow: var(--shadow);
+}
+
+.message.user {
+  align-self: flex-end;
+  background: var(--bubble-user);
+  border-color: #c8dcff;
+}
+
+.message img {
+  max-width: 260px;
+  border-radius: 10px;
+  display: block;
+  margin-top: 8px;
+  border: 1px solid #dbe2ef;
+}
+
+.composer {
+  border-top: 1px solid var(--border);
+  padding: 16px;
+  background: var(--panel);
+}
+
+.composer-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+textarea {
+  flex: 1;
+  min-height: 150px;
+  max-height: 260px;
+  resize: vertical;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.composer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.action-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  min-width: 64px;
+}
+
+.action-btn.send {
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+}
+
+.action-btn.send:hover { background: var(--primary-2); }
+
+.action-btn.stop {
+  background: #f7d7d7;
+  color: #7a2020;
+  border: 1px solid #f0bcbc;
+}
+
+.file-row {
+  margin-top: 12px;
+}
+
+.file-input {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.status {
+  padding: 6px 16px 14px 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.status.error { color: var(--danger); }
+
+.preview {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.preview img {
+  max-width: 120px;
+  border-radius: 8px;
+  border: 1px solid #dbe2ef;
+}
+
+.chip {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.markdown {
+  white-space: normal;
+}
+
+.markdown p { margin: 0 0 0.75em 0; }
+.markdown p:last-child { margin-bottom: 0; }
+.markdown h1, .markdown h2, .markdown h3 {
+  margin: 0.6em 0 0.4em;
+  font-weight: 600;
+}
+
+.markdown code {
+  background: #f3f4f6;
+  padding: 0 4px;
+  border-radius: 4px;
+  font-family: "Cascadia Code", "Consolas", monospace;
+  font-size: 0.95em;
+}
+
+.markdown pre {
+  background: #f3f4f6;
+  padding: 12px;
+  border-radius: 8px;
+  overflow: auto;
+  margin: 0 0 0.75em 0;
+}
+
+.markdown pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.markdown ul, .markdown ol {
+  margin: 0 0 0.75em 1.2em;
+}
+
+.markdown blockquote {
+  margin: 0 0 0.75em 0;
+  padding-left: 12px;
+  border-left: 3px solid #d1d5db;
+  color: #4b5563;
+}
+
+@media (max-width: 720px) {
+  .message { max-width: 92%; }
+  .composer-row { flex-direction: column; align-items: stretch; }
+  .composer-actions { flex-direction: row; justify-content: flex-end; }
+}
